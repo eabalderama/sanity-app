@@ -21,6 +21,13 @@ export default function ContactForm() {
     if (!formData) return;
     setLoading(true);
     await submitContactForm(formData);
+    setFormData({
+      name: "",
+      email: "",
+      company: "",
+      subject: "",
+      message: "",
+    });
     setLoading(false);
   };
   return (
