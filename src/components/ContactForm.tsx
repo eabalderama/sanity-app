@@ -6,6 +6,7 @@ import { FormEvent, useState } from "react";
 import { Contact, submitContactForm } from "@/actions/submitContactForm";
 
 export default function ContactForm() {
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState<Contact>({
     name: "",
     email: "",
@@ -18,7 +19,9 @@ export default function ContactForm() {
     e.preventDefault();
     console.log();
     if (!formData) return;
+    setLoading(true);
     await submitContactForm(formData);
+    setLoading(false);
   };
   return (
     <form className="space-y-4" onSubmit={handleSubmit}>
@@ -100,8 +103,8 @@ export default function ContactForm() {
           }
         />
       </div>
-      <Button type="submit" className="w-full">
-        Submit
+      <Button type="submit" className="w-full" disabled={loading}>
+        {loading ? "Sending..." : "Send"}
       </Button>
     </form>
   );
