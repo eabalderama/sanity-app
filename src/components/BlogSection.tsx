@@ -40,13 +40,15 @@ export default async function BlogSection() {
           {posts.map((post, index) => (
             <Card key={index} className="overflow-hidden">
               <CardHeader className="p-0">
-                <Image
-                  src={post.image}
-                  width={400}
-                  height={200}
-                  alt={post.title}
-                  className="w-full object-cover"
-                />
+                {post.image && (
+                  <Image
+                    src={post.image}
+                    width={400}
+                    height={200}
+                    alt={post.title}
+                    className="w-full object-cover"
+                  />
+                )}
               </CardHeader>
               <CardContent className="p-4">
                 <CardTitle className="text-xl">{post.title}</CardTitle>
